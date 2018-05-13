@@ -1,59 +1,93 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/lib/w3.css">
-<style>
-.mySlides {display:none}
-</style>
-<body>
-
-<div class="w3-content" style="max-width:1200px">
-  <img class="mySlides" src="https://i.imgur.com/PsbRuyl.jpg" style="width:100%">
-  <img class="mySlides" src="https://i.imgur.com/PsbRuyl.jpg" style="width:100%">
-  <img class="mySlides" src="https://i.imgur.com/PsbRuyl.jpg" style="width:100%">
-
-  <div class="w3-row-padding w3-section">
-    <div class="w3-col s4">
-      <img class="demo w3-border w3-hover-shadow" src="https://i.imgur.com/PsbRuyl.jpg" style="width:100%" onclick="currentDiv(1)">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <title>슬라이드 연습</title>
+     <style media="screen">
+      *{
+        margin: 0; padding: 0;
+      }
+      .slide{
+        width: 1000px;
+        height: 600px;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+      }
+      .slide ul{
+        width: 5000px;
+        position: absolute;
+        top:0;
+        left:0;
+        font-size: 0;
+      }
+      .slide ul li{
+        display: inline-block;
+      }
+      #back{
+        position: absolute;
+        top: 250px;
+        left: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+      #next{
+        position: absolute;
+        top: 250px;
+        right: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+     </style>
+  </head>
+  <body>
+    <div class="slide">
+      <img id="back" src="img/back.png" alt="" width="100">
+      <ul>
+        <li><img src="https://i.imgur.com/PsbRuyl.jpg" alt="" width="1000" height="600"></li>
+        <li><img src="https://i.imgur.com/PsbRuyl.jpg" alt="" width="1000" height="600"></li>
+        <li><img src="https://i.imgur.com/PsbRuyl.jpg" alt="" width="1000" height="600"></li>
+        <li><img src="https://i.imgur.com/PsbRuyl.jpg" alt="" width="1000" height="600"></li>
+        <li><img src="https://i.imgur.com/PsbRuyl.jpg" alt="" width="1000" height="600"></li>
+      </ul>
+      <img id="next" src="https://i.imgur.com/1FdQs0d.png" alt="" width="100">
     </div>
-    <div class="w3-col s4">
-      <img class="demo w3-border w3-hover-shadow" src="https://i.imgur.com/PsbRuyl.jpg" style="width:100%" onclick="currentDiv(2)">
-    </div>
-    <div class="w3-col s4">
-      <img class="demo w3-border w3-hover-shadow" src="https://i.imgur.com/PsbRuyl.jpg" style="width:100%" onclick="currentDiv(3)">
-    </div>
-  </div>
-</div>
+  </body>
 
-<script>
-var slideIndex = 1;
-showDivs(slideIndex);
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var imgs;
+      var img_count;
+      var img_position = 1;
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
+      imgs = $(".slide ul");
+      img_count = imgs.children().length;
 
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
+      //버튼을 클릭했을 때 함수 실행
+      $('#back').click(function () {
+        back();
+      });
+      $('#next').click(function () {
+        next();
+      });
 
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  if (n > x.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = x.length} ;
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" w3-border-red", "");
-  }
-  x[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " w3-border-red";
-}
-</script>
-
-</body>
-</html> 
+      function back() {
+        if(1<img_position){
+          imgs.animate({
+            left:'+=1000px'
+          });
+          img_position--;
+        }
+      }
+      function next() {
+        if(img_count>img_position){
+          imgs.animate({
+            left:'-=1000px'
+          });
+          img_position++;
+        }
+      }
+    });
+  </script>
+</html>
