@@ -6,17 +6,17 @@
     <title>슬라이드 연습</title>
      <style media="screen">
       *{
-        margin: 0; padding: 0;
+        margin: 10; padding: 0;
       }
       .slide{
-        width: 1000px;
-        height: 600px;
+        width: 800px;
+        height: 400px;
         overflow: hidden;
         position: relative;
         margin: 0 auto;
       }
-      .slide ul{
-        width: 5000px;
+      .ui{
+        width: 4000px;
         position: absolute;
         top:0;
         left:0;
@@ -43,7 +43,7 @@
   </head>
   <body>
     <div class="slide">
-      <img id="back" src="img/back.png" alt="" width="100">
+      <img id="back" src="https://i.imgur.com/cmSBNyR.png" alt="" width="100">
       <ul>
         <li><img src="https://i.imgur.com/PsbRuyl.jpg" alt="" width="1000" height="600"></li>
         <li><img src="https://i.imgur.com/PsbRuyl.jpg" alt="" width="1000" height="600"></li>
@@ -51,7 +51,7 @@
         <li><img src="https://i.imgur.com/PsbRuyl.jpg" alt="" width="1000" height="600"></li>
         <li><img src="https://i.imgur.com/PsbRuyl.jpg" alt="" width="1000" height="600"></li>
       </ul>
-      <img id="next" src="https://i.imgur.com/1FdQs0d.png" alt="" width="100">
+      <img id="next" src="https://i.imgur.com/IYpDu41.png" alt="" width="100">
     </div>
   </body>
 
@@ -61,10 +61,10 @@
       var img_count;
       var img_position = 1;
 
-      imgs = $(".slide ul");
+      imgs = $(".ui");
       img_count = imgs.children().length;
 
-      //버튼을 클릭했을 때 함수 실행
+      //버튼 클릭
       $('#back').click(function () {
         back();
       });
@@ -75,7 +75,7 @@
       function back() {
         if(1<img_position){
           imgs.animate({
-            left:'+=1000px'
+            left:'+=800px'
           });
           img_position--;
         }
@@ -83,7 +83,7 @@
       function next() {
         if(img_count>img_position){
           imgs.animate({
-            left:'-=1000px'
+            left:'-=800px'
           });
           img_position++;
         }
